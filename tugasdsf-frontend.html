@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pengecekan Nilai Siswa</title>
+
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            }
+
+            .container {
+            background-color: #6502de;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            }
+
+            .container:hover {
+            background-color: #011b78;
+            }
+
+            label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            }
+
+            input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            }
+
+            button {
+            background-color: #aeb6fd;
+            color: #011b78;
+            font-weight: bold ;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+            background-color: #d3d7f5;
+            }
+
+            #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #aeb6fd;
+            transition: color 0.3s ease;
+            }
+
+            #result.invalid {
+            color: #ffb1b1;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>Pengecekan Nilai</h2>
+            <form id="nilaiForm">
+                <label for="nilai">Masukkan Nilai:</label>
+                <input type="number" id="nilai" name="nilai" required>
+                <button type="button" onclick="cekNilai()">Cek Nilai</button>
+            </form>
+            <div id="result"></div>
+        </div>
+
+        <script>
+            function cekNilai() {
+                var nilaiInput = document.getElementById('nilai').value;
+                var resultDiv = document.getElementById('result');
+        
+                // Ubah nilai ke angka
+                var nilai = parseFloat(nilaiInput);
+                
+                // Mengecek Bilangan Ganjil atau Genap
+                var jenisBilangan = (nilai % 2 === 0) ? 'Genap' : 'Ganjil';
+               
+                // Periksa apakah nilai valid
+                if (!isNaN(nilai) && nilai >= 0 && nilai <= 100) {
+                    // Periksa rentang nilai dan tentukan nilai huruf
+                    var nilaiHuruf;
+                    if (nilai >= 85 && nilai <= 100) {
+                        nilaiHuruf = 'A';
+                    } else if (nilai >= 75 && nilai < 85) {
+                        nilaiHuruf = 'B';
+                    } else if (nilai >= 60 && nilai < 75) {
+                        nilaiHuruf = 'C';
+                    } else {
+                        nilaiHuruf = 'D';
+                    }
+        
+                    // Tampilkan hasil
+                    resultDiv.innerHTML = 'Nilai Huruf: ' + nilaiHuruf + '<br> Bilangan: ' + jenisBilangan;
+                    resultDiv.className = '';
+                } else {
+                
+                    // Jika nilai di luar rentang, atur nilai menjadi 0
+                    document.getElementById('nilai').value = 0;
+                    resultDiv.innerHTML = 'Nilai di luar rentang. Nilai diubah menjadi 0.';
+                    resultDiv.className = 'invalid';
+                }
+            }
+        </script>
+        
+    </body>
+</html>

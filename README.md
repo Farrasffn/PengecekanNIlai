@@ -1,5 +1,7 @@
 # About
-A Website for checking values based on the type of number, even or odd.
+A Website for checking student scores based on the type of number, even or odd.
 
 # Source
-DSF Project - Frontend Developer 
+DSF 23 Project - Frontend Developer 
+
+January, 2024.
